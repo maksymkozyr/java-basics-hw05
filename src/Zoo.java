@@ -2,6 +2,8 @@ import java.util.List;
 
 public class Zoo {
 
+  public static String aaa;
+
   /**
    * Feeds different bird sections of the zoo.
    *
@@ -19,11 +21,16 @@ public class Zoo {
    * @param list list of birds of particular type.
    * @param bird a new bird.
    */
-  public static void acceptBird(List list, FlyingBird bird) {
-    // TODO fix method declaration
+  public static void acceptBird(List<? super FlyingBird> list, FlyingBird bird) {
+
+    list.add(bird);
+    System.out.println(bird);
     System.out.println("Accepting a bird to a section");
-    // TODO check flying bird wings
-    // TODO add a bird to the list and print it
+    for (Object o: list) {
+      if (o instanceof FlyingBird) {
+        ((FlyingBird) o).checkWings();
+      }
+    }
   }
 
   /**
@@ -32,10 +39,13 @@ public class Zoo {
    * @param list    list of birds.
    * @param newBird bird to add.
    */
-  public static void registerBird(List list, Bird newBird) {
-    // TODO fix method declaration
+  public static void registerBird(List<Bird> list, Bird newBird) {
+
+    list.add(newBird);
     System.out.println("Adding a bird to the birds list");
-    // TODO add a bird to list
-    // TODO print birds in the cycle
+
+    for (Bird b: list){
+      System.out.println(b);
+    }
   }
 }
